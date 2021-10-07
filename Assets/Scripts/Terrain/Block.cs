@@ -15,6 +15,8 @@ public class Block
 
     public virtual MeshData Blockdata (Chunk chunk, int x, int y, int z, MeshData meshData)
     {
+        meshData.useRenderDataForCol = true;
+
         if (!chunk.GetBlock(x,y + 1,z).IsSolid(Direction.down))
         {
             meshData = FaceDataUp(chunk, x, y, z, meshData);
@@ -44,10 +46,10 @@ public class Block
 
     protected virtual MeshData FaceDataUp (Chunk chunk, int x, int y, int z, MeshData meshData)
     {
-        meshData.vertices.Add(new Vector3(x - 0.5f, y + 0.5f, z + 0.5f));
-        meshData.vertices.Add(new Vector3(x + 0.5f, y + 0.5f, z + 0.5f));
-        meshData.vertices.Add(new Vector3(x + 0.5f, y + 0.5f, z - 0.5f));
-        meshData.vertices.Add(new Vector3(x - 0.5f, y + 0.5f, z - 0.5f));
+        meshData.AddVertex(new Vector3(x - 0.5f, y + 0.5f, z + 0.5f));
+        meshData.AddVertex(new Vector3(x + 0.5f, y + 0.5f, z + 0.5f));
+        meshData.AddVertex(new Vector3(x + 0.5f, y + 0.5f, z - 0.5f));
+        meshData.AddVertex(new Vector3(x - 0.5f, y + 0.5f, z - 0.5f));
 
         meshData.AddQuadTriangles();
 
