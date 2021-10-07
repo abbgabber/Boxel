@@ -1,6 +1,5 @@
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public struct WorldPos
 {
@@ -13,7 +12,6 @@ public struct WorldPos
         this.z = z;
     }
 
-    // Overriding cuz sped :)))
     public override bool Equals(object obj)
     {
         if (!(obj is WorldPos))

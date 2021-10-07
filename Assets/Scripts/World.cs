@@ -1,15 +1,15 @@
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class World : MonoBehaviour
-{
+public class World : MonoBehaviour {
+
     public Dictionary<WorldPos, Chunk> chunks = new Dictionary<WorldPos, Chunk>();
     public GameObject chunkPrefab;
 
-    // Start is called before the first frame update
     void Start()
     {
+
         for (int x = -2; x < 2; x++)
         {
             for (int y = -1; y < 1; y++)
@@ -22,28 +22,29 @@ public class World : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	void Update () {
+	
+	}
 
     public void CreateChunk(int x, int y, int z)
     {
         WorldPos worldPos = new WorldPos(x, y, z);
 
-        // Instantiate the chunk with the coords and chunk prefab
-        GameObject newChunkObject = Instantiate(chunkPrefab, new Vector3(x, y, z), Quaternion.Euler(Vector3.zero)) as GameObject;
+        //Instantiate the chunk at the coordinates using the chunk prefab
+        GameObject newChunkObject = Instantiate(
+                        chunkPrefab, new Vector3(x, y, z),
+                        Quaternion.Euler(Vector3.zero)
+                    ) as GameObject;
 
         Chunk newChunk = newChunkObject.GetComponent<Chunk>();
 
         newChunk.pos = worldPos;
         newChunk.world = this;
 
-        // Add to dict
+        //Add it to the chunks dictionary with the position as the key
         chunks.Add(worldPos, newChunk);
 
-        // Fill chunks for now
         for (int xi = 0; xi < 16; xi++)
         {
             for (int yi = 0; yi < 16; yi++)
@@ -94,13 +95,18 @@ public class World : MonoBehaviour
 
         if (containerChunk != null)
         {
-            Block block = containerChunk.GetBlock(x - containerChunk.pos.x, y - containerChunk.pos.y, z - containerChunk.pos.z);
+            Block block = containerChunk.GetBlock(
+                x - containerChunk.pos.x,
+                y - containerChunk.pos.y,
+                z - containerChunk.pos.z);
+
             return block;
         }
         else
         {
             return new BlockAir();
         }
+
     }
 
     public void SetBlock(int x, int y, int z, Block block)

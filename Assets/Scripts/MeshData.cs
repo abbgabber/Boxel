@@ -1,6 +1,6 @@
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class MeshData
 {
@@ -8,19 +8,14 @@ public class MeshData
     public List<int> triangles = new List<int>();
     public List<Vector2> uv = new List<Vector2>();
 
-
-    // Collisions
     public List<Vector3> colVertices = new List<Vector3>();
     public List<int> colTriangles = new List<int>();
 
     public bool useRenderDataForCol;
 
-    public MeshData()
-    {
+    public MeshData() { }
 
-    }
-
-    public void AddQuadTriangles ()
+    public void AddQuadTriangles()
     {
         triangles.Add(vertices.Count - 4);
         triangles.Add(vertices.Count - 3);
@@ -35,7 +30,6 @@ public class MeshData
             colTriangles.Add(colVertices.Count - 4);
             colTriangles.Add(colVertices.Count - 3);
             colTriangles.Add(colVertices.Count - 2);
-
             colTriangles.Add(colVertices.Count - 4);
             colTriangles.Add(colVertices.Count - 2);
             colTriangles.Add(colVertices.Count - 1);
@@ -50,6 +44,7 @@ public class MeshData
         {
             colVertices.Add(vertex);
         }
+
     }
 
     public void AddTriangle(int tri)
