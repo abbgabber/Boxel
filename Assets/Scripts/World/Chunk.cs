@@ -101,4 +101,12 @@ public class Chunk : MonoBehaviour
         coll.sharedMesh = mesh;
     }
 
+    public void SetBlocksUnmodified()
+    {
+        foreach (Block block in blocks)
+        {
+            block.changed = false;
+        }
+    }
+
 }
