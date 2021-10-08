@@ -29,6 +29,8 @@
 ExportedObj/
 .consulo/
 *.unityproj
+#*.csproj
+#*.sln
 *.suo
 *.tmp
 *.user
