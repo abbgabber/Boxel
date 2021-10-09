@@ -18,6 +18,13 @@ public class Modify : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position,transform.forward,out hit, 100))
             {
+                // Check if it hit a tree
+                if (hit.collider.CompareTag("Tree"))
+                {
+                    Chunk chunk = hit.collider.transform.parent.GetComponent<Chunk>();
+                    chunk.destroyTree(hit);
+                }
+
                 EditTerrain.SetBlock(hit, new BlockAir());
             }
         }

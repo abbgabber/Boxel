@@ -20,6 +20,9 @@ public class Chunk : MonoBehaviour
     public World world;
     public WorldPos pos;
 
+    public enum Biome { plains, snowy, desert, ocean, test };
+    public Biome biome = Biome.test;
+
     void Start()
     {
         filter = gameObject.GetComponent<MeshFilter>();
@@ -112,4 +115,23 @@ public class Chunk : MonoBehaviour
         }
     }
 
+    // TREES CURRENTLY DO NOT GET SERIALIZED
+    public void generateTree(int x, int y, int z)
+    {
+        GameObject newTreeObject = Instantiate(
+                        world.treeTestPrefab, new Vector3(pos.x + x, pos.y + y - 0.5f, pos.z + z),
+                        Quaternion.Euler(Vector3.zero)
+                    ) as GameObject;
+        newTreeObject.transform.SetParent(this.gameObject.transform);
+    }
+
+    public bool destroyTree(RaycastHit hit)
+    {
+        GameObject tree = hit.collider.gameObject;
+        if (tree == null)
+            return false;
+
+        Destroy(tree);
+        return true;
+    }
 }

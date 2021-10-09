@@ -8,6 +8,10 @@ public class World : MonoBehaviour {
     public Dictionary<WorldPos, Chunk> chunks = new Dictionary<WorldPos, Chunk>();
     public GameObject chunkPrefab;
 
+    public int seed;
+
+    public GameObject treeTestPrefab;
+
     public void CreateChunk(int x, int y, int z)
     {
         WorldPos worldPos = new WorldPos(x, y, z);

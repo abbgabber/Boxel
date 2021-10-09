@@ -38,6 +38,8 @@ public class TerrainGen
 
     public Chunk ChunkColumnGen(Chunk chunk, int x, int z)
     {
+        BiomeVars(chunk); // Sets the chunk settings to match the current biome, maybe should be own class?
+
         int stoneHeight = Mathf.FloorToInt(stoneBaseHeight);
         stoneHeight += GetNoise(x, 0, z, stoneMountainFrequency, Mathf.FloorToInt(stoneMountainHeight));
 
@@ -50,7 +52,7 @@ public class TerrainGen
         dirtHeight += GetNoise(x, 100, z, dirtNoise, Mathf.FloorToInt(dirtNoiseHeight));
 
         // OVERLAP HERE TOO
-        for (int y = chunk.pos.y-8; y < chunk.pos.y+Chunk.chunkSize; y++)
+        for (int y = chunk.pos.y - 8; y < chunk.pos.y + Chunk.chunkSize; y++)
         {
             //Get a value to base cave generation on
             int caveChance = GetNoise(x, y, z, caveFrequency, 100);
@@ -65,7 +67,13 @@ public class TerrainGen
                 // THIS IS WHERE TREES ARE PLACED
                 if (y == dirtHeight && GetNoise(x, 0, z, treeFrequency, 100) < treeDensity)
                     CreateTree(x, y + 1, z, chunk);
+
             }
+            /*else if (y <= waterHeight && caveSize < caveChance)
+            {
+                // WATER GEN (probs should be changed)
+                SetBlock(x, y, z, new BlockWater(), chunk);
+            }*/
             else
             {
                 SetBlock(x, y, z, new BlockAir(), chunk);
@@ -95,6 +103,26 @@ public class TerrainGen
     // TEMP FUNCTION (will be replaced with tree models instead)
     void CreateTree(int x, int y, int z, Chunk chunk)
     {
+        x -= chunk.pos.x;
+        y -= chunk.pos.y;
+        z -= chunk.pos.z;
+        if (Chunk.InRange(x) && Chunk.InRange(y) && Chunk.InRange(z))
+        {
+            if (chunk.blocks[x,y,z]==null)
+            {
+                chunk.generateTree(x, y, z);
+            }
+        }
+
+        //SetBlock(x, y, z, new BlockWood(), chunk, true);
+        /* NEEDS MONOBEHAVIOUR
+        GameObject newChunkObject = Instantiate(
+                        chunk.world.treeTestPrefab, new Vector3(x, y, z),
+                        Quaternion.Euler(Vector3.zero)
+                    ) as GameObject;
+        */
+        /*
+        //Instantiate the chunk at the coordinates using the chunk prefab
         //create leaves
         for (int xi = -2; xi <= 2; xi++)
         {
@@ -110,6 +138,36 @@ public class TerrainGen
         for (int yt = 0; yt < 6; yt++)
         {
             SetBlock(x, y + yt, z, new BlockWood(), chunk, true);
+        }
+        */
+    }
+
+    // BIOME FUNCTIONS
+    private void BiomeVars(Chunk chunk)
+    {
+        switch (chunk.biome)
+        {
+            case Chunk.Biome.test:
+                stoneBaseHeight = -24;
+                stoneBaseNoise = 0.05f;
+                stoneBaseNoiseHeight = 4;
+
+                stoneMountainHeight = 48;
+                stoneMountainFrequency = 0.008f;
+                stoneMinHeight = -12;
+
+                dirtBaseHeight = 1;
+                dirtNoise = 0.04f;
+                dirtNoiseHeight = 3;
+
+                caveFrequency = 0.025f;
+                caveSize = 7;
+
+                treeFrequency = 0.2f;
+                treeDensity = 3;
+
+                waterHeight = -5;
+                return;
         }
     }
 }

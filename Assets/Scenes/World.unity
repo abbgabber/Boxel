@@ -577,6 +577,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldName: world
   chunkPrefab: {fileID: 525461571764189513, guid: b926adcfcd899834e8e62d3ee4459c08, type: 3}
+  seed: 0
+  treeTestPrefab: {fileID: 141540, guid: 82f258a1b46e8b640908bfe7ad2de692, type: 3}
 --- !u!4 &1546773962
 Transform:
   m_ObjectHideFlags: 0
