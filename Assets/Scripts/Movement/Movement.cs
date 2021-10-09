@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour{
     public CharacterController controller;
     public Transform cam;
     public CinemachineFreeLook vcam;
+    public Animator animator;
 
     public float speed = 30f;
     public float turnTime = 0.1f;
@@ -23,10 +24,12 @@ public class Movement : MonoBehaviour{
         float scroll = Input.mouseScrollDelta.y;
 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        
-        if((scroll > 0) && (fov < 110f)){
+
+        animator.SetFloat("Speed", direction.sqrMagnitude);
+
+        if((scroll < 0) && (fov < 110f)){
             fov += 2.5f;
-        }else if((scroll < 0) && (fov > 20f)){
+        }else if((scroll > 0) && (fov > 20f)){
             fov -= 2.5f;
         }
         vcam.m_Lens.FieldOfView = fov;
@@ -37,6 +40,7 @@ public class Movement : MonoBehaviour{
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
     }
