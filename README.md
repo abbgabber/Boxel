@@ -37,12 +37,14 @@
 - [ ] Player info
 # Info
 ## World Generation
+The world consists of chunks that load in and out depending on how far the player is from it. The chunks contain all the world information in its area; blocks, trees and more. The terrain is generated using a simplex noise script.
 ### Chunks
 ### Blocks
 #### Block types
 * Air
 * Grass
 * Stone
-### Noise maps
+### Noise maps 
+(it can generate noise in 3 dimensions versus unitys perlin noise which is only 2d).
 ### Biomes
 #### Deciding factors
