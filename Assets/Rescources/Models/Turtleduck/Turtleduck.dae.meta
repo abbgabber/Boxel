@@ -6,10 +6,30 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurtleduckBody-Material
+    second: {fileID: 2100000, guid: b075029bf2ae55f4aac537ca1c118486, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurtleduckHead-Material
+    second: {fileID: 2100000, guid: a5ed07ab0f5830b4f8aa6dd662b4dbee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurtleduckLeftWing-Material
+    second: {fileID: 2100000, guid: 1710695e2d647d54e8839b6da10a9c25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurtleduckRightWing-Material
+    second: {fileID: 2100000, guid: f0eca073899374b46b4a208413755c35, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 0
+    materialName: 1
     materialSearch: 1
     materialLocation: 1
   animations:
