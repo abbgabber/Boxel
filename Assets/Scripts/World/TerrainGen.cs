@@ -22,6 +22,7 @@ public class TerrainGen
 
     float treeFrequency = 0.2f;
     int treeDensity = 3;
+    int waterHeight;
 
     public Chunk ChunkGen(Chunk chunk)
     {
