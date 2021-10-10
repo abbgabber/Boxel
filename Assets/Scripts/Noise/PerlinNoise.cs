@@ -28,7 +28,7 @@ public class PerlinNoise : MonoBehaviour
         float[,] firstLayer = GenerateNoiseLayer(width, height, scale, Modes.Perlin);
         float[,] secondLayer = GenerateNoiseLayer(width, height, scale, Modes.Ridgid, ridgidPower = 3f);
 
-        GetComponent<Renderer>().material.mainTexture = GenerateTexture(GenerateLayeredNoise(firstLayer, secondLayer, layerFactor, width, height));
+        GetComponent<Renderer>().material.mainTexture = GenerateTexture(firstLayer);
     }
 
     public float[,] GenerateNoiseLayer(int width, int height, float scale, Modes mode, float offsetX = 100, float offsetY = 100, float ridgidPower = 3f)
