@@ -166,7 +166,6 @@ public class TerrainGen
                 treeFrequency = 0.2f;
                 treeDensity = 3;
 
-                waterHeight = -5;
                 return;
         }
     }
