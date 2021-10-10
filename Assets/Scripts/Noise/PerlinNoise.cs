@@ -4,11 +4,16 @@ public class PerlinNoise : MonoBehaviour
 {
     public int width = 256;
     public int height = 256;
+    public enum Modes { Perlin, Ridgid };
+    public Modes mode = Modes.Perlin;
 
     public float scale = 20f;
 
     public float offsetX = 100f;
     public float offsetY = 100f;
+
+    public float ridgidPower = 3f;
+
 
     private void Start()
     {
@@ -30,13 +35,24 @@ public class PerlinNoise : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                Color colour = CalculateColour(x, y);
-                //Color colour = CalculateRidgedColour(x, y);
+                Color colour = GetColour(x, y);
                 texture.SetPixel(x, y, colour);
             }
         }
         texture.Apply();
         return texture;
+    }
+
+    Color GetColour(int x, int y)
+    {
+        switch (mode)
+        {
+            case Modes.Perlin:
+                return CalculateColour(x, y);
+            case Modes.Ridgid:
+                return CalculateRidgedColour(x, y);
+        }
+        return Color.blue;
     }
 
     Color CalculateColour(int x, int y)
@@ -55,9 +71,9 @@ public class PerlinNoise : MonoBehaviour
 
         float sample = Mathf.PerlinNoise(xCoord, yCoord);
 
-        sample = sample - 0.5f; // Center values around 0 (-0.5 -> 0.5)
+        sample = Utils.Remap(sample, 0, 1, -1, 1); // Remaps the value from range (0-1) to range (-1 to 1)
         sample = 1f - Mathf.Abs(sample);
-        sample = sample * sample;
+        sample = Mathf.Pow(sample, ridgidPower);
 
         return new Color(sample, sample, sample);
     }
