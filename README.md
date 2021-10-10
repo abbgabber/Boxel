@@ -46,7 +46,6 @@ The world consists of chunks that load in and out depending on how far the playe
 * Grass
 * Stone
 ### Noise maps 
-(it can generate noise in 3 dimensions versus unitys perlin noise which is only 2d).
 ### Biomes
 #### Deciding factors
 ### Sources
