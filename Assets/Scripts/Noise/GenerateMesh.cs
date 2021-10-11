@@ -11,7 +11,9 @@ public class GenerateMesh : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
 
+    [Range(0,256)]
     public int width = 20;
+    [Range(0,256)]
     public int depth = 20;
 
     public float roughness = 1f;

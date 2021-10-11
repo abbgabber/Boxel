@@ -23,6 +23,7 @@ public class TerrainGen
     float treeFrequency = 0.2f;
     int treeDensity = 3;
     int waterHeight;
+    public enum Biome { flat, hilly, mountainous, ocean, test };
 
     public Chunk ChunkGen(Chunk chunk)
     {
@@ -62,6 +63,7 @@ public class TerrainGen
             {
                 SetBlock(x, y, z, new Block(), chunk);
             }
+            /* REMOVE THIS COMMENT TO ENABLE TREE GEN
             else if (y <= dirtHeight && caveSize < caveChance)
             {
                 SetBlock(x, y, z, new BlockGrass(), chunk);
@@ -148,7 +150,7 @@ public class TerrainGen
     {
         switch (chunk.biome)
         {
-            case Chunk.Biome.test:
+            case Biome.hilly:
                 stoneBaseHeight = -24;
                 stoneBaseNoise = 0.05f;
                 stoneBaseNoiseHeight = 4;
@@ -166,6 +168,43 @@ public class TerrainGen
 
                 treeFrequency = 0.2f;
                 treeDensity = 3;
+
+                return;
+            case Biome.flat:
+                stoneBaseHeight = -24;
+                stoneBaseNoise = 0.01f;
+                stoneBaseNoiseHeight = 4;
+
+                stoneMountainHeight = 0;
+                stoneMountainFrequency = 0f;
+                stoneMinHeight = -12;
+
+                dirtBaseHeight = 1;
+                dirtNoise = 0.04f;
+                dirtNoiseHeight = 3;
+
+                // No caves or trees in plains
+                caveFrequency = 0.0f;
+                treeFrequency = 0.0f;
+
+                return;
+
+            case Biome.mountainous:
+                stoneBaseHeight = -24;
+                stoneBaseNoise = 0.01f;
+                stoneBaseNoiseHeight = 4;
+
+                stoneMountainHeight = 86;
+                stoneMountainFrequency = 0.01f;
+                stoneMinHeight = -24;
+
+                dirtBaseHeight = 1;
+                dirtNoise = 0.04f;
+                dirtNoiseHeight = 3;
+
+                // No caves or trees in plains
+                caveFrequency = 0.0f;
+                treeFrequency = 0.0f;
 
                 return;
         }

@@ -20,8 +20,7 @@ public class Chunk : MonoBehaviour
     public World world;
     public WorldPos pos;
 
-    public enum Biome { plains, snowy, desert, ocean, test };
-    public Biome biome = Biome.test;
+    public TerrainGen.Biome biome = TerrainGen.Biome.flat;
 
     void Start()
     {
