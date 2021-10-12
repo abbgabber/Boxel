@@ -6,6 +6,7 @@
   - [**World Generation**](#world-generation)
     - [**Biomes**](#biomes)
   - [**Serialization**](#serialization)
+  - [**Player**](#player)
 - [**Info**](#info)
   - [**World Generation**](#world-generation-1)
     - [**Chunks**](#chunks)
@@ -37,6 +38,10 @@
 - [x] Modified blocks
 - [ ] Trees
 - [ ] Player info
+## **Player**
+- [x] General movement
+- [ ] Glider
+- [ ] Items and Inventory
 # **Info**
 ## **World Generation**
 The world consists of chunks that load in and out depending on how far the player is from it. The chunks contain all the world information in its area; blocks, trees and more. The terrain is generated using a simplex noise script.
