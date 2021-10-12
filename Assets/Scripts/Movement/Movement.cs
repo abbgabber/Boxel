@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour{
     [SerializeField]
     private float gravity = -9.82f; 
     [SerializeField]
-    private float groundDistance = 10f;
+    private float groundDistance = 0.4f;
     [SerializeField]
     private bool isGrounded;
     
@@ -39,7 +39,7 @@ public class Movement : MonoBehaviour{
             jumpAxis.y = -2f;
         }
         if(Input.GetButtonDown("Jump") && isGrounded){
-            jumpAxis.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            jumpAxis.y = jumpHeight;
         }
         jumpAxis.y += gravity * Time.deltaTime;
         controller.Move(jumpAxis * Time.deltaTime);
