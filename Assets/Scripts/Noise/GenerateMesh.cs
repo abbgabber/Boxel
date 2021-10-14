@@ -16,7 +16,9 @@ public class GenerateMesh : MonoBehaviour
     [Range(0,256)]
     public int depth = 20;
 
+    [Range(0,50)]
     public float roughness = 1f;
+    [Range(0,50)]
     public float scale = 0.3f;
 
     private void Start()
@@ -39,8 +41,9 @@ public class GenerateMesh : MonoBehaviour
         {
             for (int x = 0; x <= width; x++)
             {
-                float y = SimplexNoise.Noise.Generate(x * scale, z * scale) * roughness;
-                vertices[i] = new Vector3(x, y, z);
+                
+                // Generate noise here, return y value
+                vertices[i] = new Vector3(x, LayeredNoise.GenerateNoise(x, z, scale, roughness), z);
                 i++;
             }
         }
