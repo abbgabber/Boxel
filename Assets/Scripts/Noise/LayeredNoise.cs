@@ -8,4 +8,10 @@ public static class LayeredNoise
     {
         return SimplexNoise.Noise.Generate(x * scale, z * scale) * roughness;
     }
+
+    /*
+     Generate noise maps such that octaves equalt amount of layers.
+     frequency = lacunarity^(n-1) // Zero for start map, value larger than 1.
+     amplitude = persistance^(n-1) // Value between 0 and 1.
+    */
 }

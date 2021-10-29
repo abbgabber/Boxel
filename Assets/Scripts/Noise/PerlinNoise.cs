@@ -6,14 +6,14 @@ public static class PerlinNoise
 {
     public enum Modes { Perlin, Ridgid };
 
-    public static float[,] GenerateNoiseLayer(int width, int height, float scale, Modes mode, float offsetX = 100, float offsetY = 100, float ridgidPower = 3f)
+    public static float[,] GenerateNoiseLayer(int width, int height, float frequency, Modes mode, float amplitude, float offsetX = 100, float offsetY = 100, float ridgidPower = 3f)
     {
         switch (mode)
         {
             case Modes.Perlin:
-                return GeneratePerlinNoiseLayer(width, height, scale, offsetX, offsetY);
+                return GeneratePerlinNoiseLayer(width, height, frequency, amplitude, offsetX, offsetY);
             case Modes.Ridgid:
-                return GenerateRidgidNoiseLayer(width, height, scale, ridgidPower, offsetX, offsetY);
+                return GenerateRidgidNoiseLayer(width, height, frequency, ridgidPower, offsetX, offsetY);
             default:
                 float[,] noiseLayer = new float[width, height];
                 for (int x = 0; x < width; x++)
@@ -27,32 +27,32 @@ public static class PerlinNoise
         }
     }
 
-    public static float[,] GeneratePerlinNoiseLayer(int width, int height, float scale, float offsetX = 100, float offsetY = 100)
+    public static float[,] GeneratePerlinNoiseLayer(int width, int height, float frequency, float amplitude, float offsetX = 100, float offsetY = 100)
     {
         float[,] noiseLayer = new float[width,height];
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                float xCoord = (float)x / width * scale + offsetX;
-                float yCoord = (float)y / height * scale + offsetY;
+                float xCoord = (float)x / width * frequency + offsetX;
+                float yCoord = (float)y / height * frequency + offsetY;
 
-                float sample = Mathf.PerlinNoise(xCoord, yCoord);
+                float sample = Mathf.PerlinNoise(xCoord, yCoord) * amplitude;
                 noiseLayer[x, y] = sample;
             }
         }
         return noiseLayer;
     }
 
-    public static float[,] GenerateRidgidNoiseLayer(int width, int height, float scale, float ridgidScale, float offsetX = 100, float offsetY = 100, float ridgidPower = 3f)
+    public static float[,] GenerateRidgidNoiseLayer(int width, int height, float frequency, float ridgidfrequency, float offsetX = 100, float offsetY = 100, float ridgidPower = 3f)
     {
         float[,] noiseLayer = new float[width, height];
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                float xCoord = (float)x / width * scale + offsetX;
-                float yCoord = (float)y / height * scale + offsetY;
+                float xCoord = (float)x / width * frequency + offsetX;
+                float yCoord = (float)y / height * frequency + offsetY;
 
                 float sample = Mathf.PerlinNoise(xCoord, yCoord);
 

@@ -8,11 +8,18 @@ public class VisualizeNoise : MonoBehaviour
     public int height = 256;
     public PerlinNoise.Modes mode = PerlinNoise.Modes.Perlin;
 
-    public float scale = 20f;
 
     public float offsetX = 100f;
     public float offsetY = 100f;
-
+    [Header("Seed")]
+    public int seed = 1;
+    [Header("Layered noise stuff")]
+    public int octaves = 1;
+    [Range(1,100)]
+    public float lacunarity = 20f;
+    [Range(0,1)]
+    public float persistance = .5f;
+    [Header("Ridgid noise stuff")]
     public float ridgidPower = 3f;
     public float layerFactor = 0.2f;
 
@@ -25,11 +32,11 @@ public class VisualizeNoise : MonoBehaviour
 
     private void Update()
     {
-        float[,] firstLayer = PerlinNoise.GenerateNoiseLayer(width, height, scale, PerlinNoise.Modes.Perlin, offsetX, offsetY);
+        //float[,] firstLayer = PerlinNoise.GenerateNoiseLayer(width, height, lacunarity, mode, offsetX, offsetY);
+
         /*
-        float[,] secondLayer = PerlinNoise.GenerateNoiseLayer(width, height, scale, PerlinNoise.Modes.Ridgid, ridgidPower = 3f);
-        */
         float[,] simplexNoise = new float[height,width];
+        
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -37,8 +44,29 @@ public class VisualizeNoise : MonoBehaviour
                 simplexNoise[x, y] = SimplexNoise.Noise.Generate(x, y);
             }
         }
+
+        height += Mathf.PerlinNoise(child.transform.position.x/(noiseScale*2) + (seed * 10), child.transform.position.z/(noiseScale*2) + (seed * 10), seed);
+
+        */
+        float[,] layeredNoise = new float[width,height];
+        for (int i = 0; i < octaves; i++)
+        {
+            float freq = Mathf.Pow(lacunarity, i);
+            float amp = Mathf.Pow(persistance, i);
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    layeredNoise[x, y] += Mathf.PerlinNoise(x / (freq), y / (freq)) * amp;
+                }
+            }
+        }
+
+        /*
+         TODO: Lerp between ridgid noise maps and the above map to create mountain chains? alt: look up how the fuck to do it
+         */
         
-        GetComponent<Renderer>().material.mainTexture = GenerateTexture(firstLayer);
+        GetComponent<Renderer>().material.mainTexture = GenerateTexture(layeredNoise);
     }
 
     public Texture2D GenerateTexture(float[,] noiseLayer)
