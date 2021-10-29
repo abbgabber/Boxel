@@ -25,8 +25,8 @@ public class VisualizeNoise : MonoBehaviour
 
     private void Update()
     {
-        /*
         float[,] firstLayer = PerlinNoise.GenerateNoiseLayer(width, height, scale, PerlinNoise.Modes.Perlin, offsetX, offsetY);
+        /*
         float[,] secondLayer = PerlinNoise.GenerateNoiseLayer(width, height, scale, PerlinNoise.Modes.Ridgid, ridgidPower = 3f);
         */
         float[,] simplexNoise = new float[height,width];
@@ -37,8 +37,8 @@ public class VisualizeNoise : MonoBehaviour
                 simplexNoise[x, y] = SimplexNoise.Noise.Generate(x, y);
             }
         }
-
-        GetComponent<Renderer>().material.mainTexture = GenerateTexture(simplexNoise);
+        
+        GetComponent<Renderer>().material.mainTexture = GenerateTexture(firstLayer);
     }
 
     public Texture2D GenerateTexture(float[,] noiseLayer)
