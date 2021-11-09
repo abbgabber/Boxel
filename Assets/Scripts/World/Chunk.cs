@@ -128,10 +128,16 @@ public class Chunk : MonoBehaviour
     public void generateTree(int x, int y, int z)
     {
         // Randomize number here to generate diffirent types of trees
+        int rng = (int)Random.Range(0f, 3f);
+        GameObject tree = world.treeTestPrefab;
+        if (rng > 0)
+        {
+            tree = world.treeTestPrefab2;
+        }
         GameObject newTreeObject = Instantiate(
-                        world.treeTestPrefab, new Vector3(pos.x + x, pos.y + y - 0.5f, pos.z + z),
-                        Quaternion.Euler(new Vector3(-90, 0, 0))
-                    ) as GameObject;
+                            tree, new Vector3(pos.x + x, pos.y + y - 4, pos.z + z),
+                            Quaternion.Euler(new Vector3(-90, 0, 0))
+                        ) as GameObject;
         newTreeObject.transform.SetParent(this.gameObject.transform);
     }
 

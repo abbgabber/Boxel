@@ -13,6 +13,8 @@ public class TerrainGen
     float stoneMountainFrequency = 0.008f;
     float stoneMinHeight = -12;
 
+    float sandMaxHeight = 0;
+
     float dirtBaseHeight = 1;
     float dirtNoise = 0.04f;
     float dirtNoiseHeight = 3;
@@ -62,6 +64,10 @@ public class TerrainGen
             if (y <= stoneHeight) //  && caveSize < caveChance
             {
                 SetBlock(x, y, z, new Block(), chunk);
+            }
+            else if (y <= (sandMaxHeight + Random.Range(0,3)) && y <= dirtHeight)
+            {
+                SetBlock(x, y, z, new BlockSand(), chunk);
             }
             else if (y <= dirtHeight) //  && caveSize < caveChance
             {
