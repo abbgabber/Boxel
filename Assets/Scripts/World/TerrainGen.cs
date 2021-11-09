@@ -66,16 +66,14 @@ public class TerrainGen
             else if (y <= dirtHeight) //  && caveSize < caveChance
             {
                 SetBlock(x, y, z, new BlockGrass(), chunk);
-                /* REMOVE THIS COMMENT TO ENABLE TREE GEN */
                 // THIS IS WHERE TREES ARE PLACED
-                /*if (y == dirtHeight && GetNoise(x, 0, z, treeFrequency, 100) < treeDensity)
+                if (y == dirtHeight && GetNoise(x, 0, z, treeFrequency, 100) < treeDensity)
                     CreateTree(x, y + 1, z, chunk);
-                */
             }
             else if (y <= waterHeight) //  && caveSize < caveChance
             {
                 // WATER GEN (probs should be changed)
-                SetBlock(x, y, z, new BlockWater(), chunk, water=true);
+                SetBlock(x, y, z, new BlockWater(), chunk);
             }
             else
             {
