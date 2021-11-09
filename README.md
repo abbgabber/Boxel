@@ -14,7 +14,6 @@
     - [**Blocks**](#blocks)
       - [**Block types** *(WIP)*](#block-types-wip)
     - [**Noise maps**](#noise-maps)
-    - [**Biomes** *(WIP)*](#biomes-wip)
       - [**Deciding factors**](#deciding-factors)
 - [**Sources**](#sources)
   - [**World Generation**](#world-generation-2)
@@ -22,19 +21,11 @@
 ## **World Generation**
 - [ ] Rivers
 - [ ] Lakes
-- [ ] Moisture maps
-- [ ] Temperature maps (noise)
 - [x] Trees
 - [ ] Grass
-- [ ] Caves (perlin worms)
 - [ ] Seed (for world gen, used on the noise maps)
-- [ ] Mountains
 ### **Biomes**
-- [ ] Plains
-- [ ] Snowy
-- [ ] Mountain
-- [ ] Ocean
-- [ ] Desert
+- [x] Plains
 ## **Serialization**
 - [x] Modified blocks
 - [ ] Trees
@@ -58,7 +49,6 @@ The world consists of chunks that load in and out depending on how far the playe
 * Grass
 * Stone
 ### **Noise maps**
-### **Biomes** *(WIP)*
 #### **Deciding factors**
 # **Sources**
 ## **World Generation**
