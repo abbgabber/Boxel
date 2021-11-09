@@ -183,4 +183,14 @@ public class Block
         return false;
     }
 
+    public virtual bool IsWaterPassable()
+    {
+        return false;
+    }
+
+    public virtual bool IsWater()
+    {
+        return false;
+    }
+
 }
