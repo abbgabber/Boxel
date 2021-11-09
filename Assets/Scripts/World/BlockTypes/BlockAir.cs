@@ -20,4 +20,9 @@ public class BlockAir : Block
     {
         return false;
     }
+
+    public override bool IsWaterPassable()
+    {
+        return true;
+    }
 }

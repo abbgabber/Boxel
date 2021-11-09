@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -7,6 +8,7 @@ using System.Collections;
 
 public class Chunk : MonoBehaviour
 {
+
 
     public Block[, ,] blocks = new Block[chunkSize, chunkSize, chunkSize];
 
@@ -53,7 +55,7 @@ public class Chunk : MonoBehaviour
         return true;
     }
 
-    public void SetBlock(int x, int y, int z, Block block)
+    public void SetBlock(int x, int y, int z, Block block, bool water = false)
     {
         if (InRange(x) && InRange(y) && InRange(z))
         {
@@ -78,6 +80,14 @@ public class Chunk : MonoBehaviour
             {
                 for (int z = 0; z < chunkSize; z++)
                 {
+                    if (blocks[x, y, z].IsWater())
+                    {
+                        // This is a water block
+                    }
+                    else if (blocks[x, y, z].IsWaterPassable())
+                    {
+                        // Water can pass through this block
+                    }
                     meshData = blocks[x, y, z].Blockdata(this, x, y, z, meshData);
                 }
             }

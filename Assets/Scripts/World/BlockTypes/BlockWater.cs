@@ -22,4 +22,9 @@ public class BlockWater : Block
     {
         return false;
     }
+
+    public override bool IsWater()
+    {
+        return true;
+    }
 }
