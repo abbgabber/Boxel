@@ -127,9 +127,10 @@ public class Chunk : MonoBehaviour
     // TREES CURRENTLY DO NOT GET SERIALIZED
     public void generateTree(int x, int y, int z)
     {
+        // Randomize number here to generate diffirent types of trees
         GameObject newTreeObject = Instantiate(
                         world.treeTestPrefab, new Vector3(pos.x + x, pos.y + y - 0.5f, pos.z + z),
-                        Quaternion.Euler(Vector3.zero)
+                        Quaternion.Euler(new Vector3(-90, 0, 0))
                     ) as GameObject;
         newTreeObject.transform.SetParent(this.gameObject.transform);
     }

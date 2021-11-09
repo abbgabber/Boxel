@@ -11,6 +11,8 @@ public class World : MonoBehaviour {
     public int seed;
 
     public GameObject treeTestPrefab;
+    public GameObject treeTestPrefab2;
+    public GameObject palmTreePrefab;
 
     public void CreateChunk(int x, int y, int z)
     {

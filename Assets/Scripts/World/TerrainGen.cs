@@ -22,7 +22,7 @@ public class TerrainGen
 
     float treeFrequency = 0.2f;
     int treeDensity = 3;
-    int waterHeight;
+    int waterHeight = -5;
     public enum Biome { flat, hilly, mountainous, ocean, test };
 
     public Chunk ChunkGen(Chunk chunk)
@@ -67,7 +67,7 @@ public class TerrainGen
             {
                 SetBlock(x, y, z, new BlockGrass(), chunk);
                 // THIS IS WHERE TREES ARE PLACED
-                if (y == dirtHeight && GetNoise(x, 0, z, treeFrequency, 100) < treeDensity)
+                if (y == dirtHeight && GetNoise(x, 0, z, treeFrequency, 100) < treeDensity && y > waterHeight)
                     CreateTree(x, y + 1, z, chunk);
             }
             else if (y <= waterHeight) //  && caveSize < caveChance

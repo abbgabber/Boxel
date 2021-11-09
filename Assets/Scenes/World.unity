@@ -266,6 +266,8 @@ MonoBehaviour:
   chunkPrefab: {fileID: 525461571764189513, guid: b926adcfcd899834e8e62d3ee4459c08, type: 3}
   seed: 0
   treeTestPrefab: {fileID: 6615402731125306446, guid: c3d69d5004f33b14c89559e1a6da5a2e, type: 3}
+  treeTestPrefab2: {fileID: 192504382068862281, guid: 99419a3fed850ba4e90f22d90feb6229, type: 3}
+  palmTreePrefab: {fileID: 8804178022369336396, guid: d75e970e7c726af48a59879316ebd256, type: 3}
 --- !u!4 &1546773962
 Transform:
   m_ObjectHideFlags: 0
