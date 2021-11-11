@@ -8,11 +8,12 @@ using System.Runtime.Serialization;
 
 public static class Serialization
 {
-    public static string saveFolderName = "boxelGameSaves";
+    public static string saveFolderName = "saves";
+    public static string worldName = "popo";
     
     public static string SaveLocation(string worldName)
     {
-        string saveLocation = saveFolderName + "/" + worldName + "/";
+        string saveLocation = Application.persistentDataPath + '/' + saveFolderName + "/" + worldName + "/";
         if (!Directory.Exists(saveLocation))
         {
             Directory.CreateDirectory(saveLocation);
@@ -30,7 +31,7 @@ public static class Serialization
         if (save.blocks.Count == 0)
             return;
 
-        string saveFile = SaveLocation(chunk.world.worldName);
+        string saveFile = SaveLocation(worldName); // CHANGED
         saveFile += FileName(chunk.pos);
 
         IFormatter formatter = new BinaryFormatter();
@@ -40,7 +41,7 @@ public static class Serialization
     }
     public static bool Load(Chunk chunk)
     {
-        string saveFile = SaveLocation(chunk.world.worldName);
+        string saveFile = SaveLocation(worldName); // CHANGED
         saveFile += FileName(chunk.pos);
 
         if (!File.Exists(saveFile))
@@ -57,5 +58,10 @@ public static class Serialization
         
         stream.Close();
         return true;
+    }
+
+    public static void SaveMetaFile()
+    {
+
     }
 }
