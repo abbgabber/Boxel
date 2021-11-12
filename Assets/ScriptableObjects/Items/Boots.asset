@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36177ca50afe150409f40c69adfdd059, type: 3}
   m_Name: Boots
   m_EditorClassIdentifier: 
-  Id: 3
   uiDisplay: {fileID: 6471586766639389086, guid: 7c7fc83634b2db74f96c448dde07c3e2, type: 3}
-  type: 1
+  Stackable: 0
+  type: 4
   description: 
-  buffs:
-  - attribute: 0
-    value: 0
-    min: 5
-    max: 12
+  data:
+    Name: 
+    Id: 1
+    buffs: []
+    Stackable: 0

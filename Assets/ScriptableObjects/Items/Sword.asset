@@ -12,16 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36177ca50afe150409f40c69adfdd059, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  Id: 1
   uiDisplay: {fileID: -6447425667752118579, guid: 7c7fc83634b2db74f96c448dde07c3e2, type: 3}
-  type: 1
+  Stackable: 0
+  type: 2
   description: 
-  buffs:
-  - attribute: 0
-    value: 0
-    min: 2
-    max: 6
-  - attribute: 3
-    value: 0
-    min: 6
-    max: 18
+  data:
+    Name: 
+    Id: 6
+    buffs: []
+    Stackable: 0
