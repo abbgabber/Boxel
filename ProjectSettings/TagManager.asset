@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Epic Layer
+    uniqueID: 2578791915
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

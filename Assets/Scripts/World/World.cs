@@ -116,4 +116,13 @@ public class World : MonoBehaviour {
                 chunk.update = true;
         }
     }
+
+    public void SaveAllChunks()
+    {
+        // public Dictionary<WorldPos, Chunk> chunks = new Dictionary<WorldPos, Chunk>();
+        foreach(KeyValuePair<WorldPos, Chunk> chunk in chunks)
+        {
+            Serialization.SaveChunk(chunk.Value);
+        }
+    }
 }
