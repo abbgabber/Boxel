@@ -18,6 +18,8 @@ public class Block
 
     }
 
+    public virtual void FlowWater(Chunk chunk, int x, int y, int z, Chunk chunkCopy) { }
+
     public virtual MeshData Blockdata
      (Chunk chunk, int x, int y, int z, MeshData meshData)
     {

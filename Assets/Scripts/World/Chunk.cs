@@ -24,6 +24,9 @@ public class Chunk : MonoBehaviour
 
     public TerrainGen.Biome biome = TerrainGen.Biome.flat;
 
+    public static float waitTime = 15.0f;
+    public float timer;
+
     void Start()
     {
         filter = gameObject.GetComponent<MeshFilter>();
@@ -37,6 +40,14 @@ public class Chunk : MonoBehaviour
         {
             update = false;
             UpdateChunk();
+        }
+
+        timer += Time.deltaTime;
+        if (timer >= waitTime)
+        {
+            UpdateWaterFlow();
+            UpdateChunk();
+            timer = 0.0f;
         }
     }
 
@@ -65,6 +76,33 @@ public class Chunk : MonoBehaviour
         {
             world.SetBlock(pos.x + x, pos.y + y, pos.z + z, block);
         }
+    }
+
+    void reassignChunk(Chunk chunk, Chunk chunkCopy)
+    {
+        chunk = chunkCopy;
+    }
+
+    void UpdateWaterFlow() 
+    {
+        Chunk chunkCopy = this; // needs t do a deep copy and not a shallow copy
+        for (int x = 0; x < chunkSize; x++)
+        {
+            for (int y = 0; y < chunkSize; y++)
+            {
+                for (int z = 0; z < chunkSize; z++)
+                {
+                    if (blocks[x, y, z].IsWater())
+                    {
+                        blocks[x, y, z].FlowWater(this, x, y, z, chunkCopy);
+                        // This is a water block
+
+                    }
+                }
+            }
+        }
+    
+        reassignChunk(this, chunkCopy);
     }
 
     // Updates the chunk based on its contents
