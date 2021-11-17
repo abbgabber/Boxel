@@ -12,6 +12,7 @@ public enum ItemType
     Chest,
     Default
 }
+
 public enum Attributes
 {
     Agility,
@@ -19,8 +20,10 @@ public enum Attributes
     Stamina,
     Strength
 }
-public abstract class ItemObject : ScriptableObject
+[CreateAssetMenu(fileName = "New Item", menuName = "Inventory System/Items/item")]
+public class ItemObject : ScriptableObject
 {
+
     public Sprite uiDisplay;
     public bool Stackable;
     public ItemType type;
@@ -28,12 +31,13 @@ public abstract class ItemObject : ScriptableObject
     public string description;
     public Item data = new Item();
 
-
     public Item CreateItem()
     {
         Item newItem = new Item(this);
         return newItem;
     }
+
+
 }
 
 [System.Serializable]
@@ -42,18 +46,15 @@ public class Item
     public string Name;
     public int Id = -1;
     public ItemBuff[] buffs;
-    public bool Stackable;
     public Item()
     {
         Name = "";
         Id = -1;
-        Stackable = true;
     }
     public Item(ItemObject item)
     {
         Name = item.name;
         Id = item.data.Id;
-        Stackable = item.Stackable;
         buffs = new ItemBuff[item.data.buffs.Length];
         for (int i = 0; i < buffs.Length; i++)
         {
@@ -64,8 +65,9 @@ public class Item
         }
     }
 }
+
 [System.Serializable]
-public class ItemBuff
+public class ItemBuff : IModifier
 {
     public Attributes attribute;
     public int value;
@@ -77,6 +79,12 @@ public class ItemBuff
         max = _max;
         GenerateValue();
     }
+
+    public void AddValue(ref int baseValue)
+    {
+        baseValue += value;
+    }
+
     public void GenerateValue()
     {
         value = UnityEngine.Random.Range(min, max);
