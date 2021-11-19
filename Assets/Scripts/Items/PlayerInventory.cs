@@ -10,9 +10,14 @@ public class PlayerInventory : MonoBehaviour
     public InventoryObject equipment;
 
     public Attribute[] attributes;
+    public Canvas canv;
 
     private void Start()
     {
+        if (canv.enabled == true)
+        {
+            canv.enabled = false;
+        }
         for (int i = 0; i < attributes.Length; i++)
         {
             attributes[i].SetParent(this);
@@ -95,6 +100,10 @@ public class PlayerInventory : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            canv.enabled = !canv.enabled;
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             inventory.Save();
