@@ -86,18 +86,18 @@ public class PlayerInventory : MonoBehaviour
     }
 
 
-    public void OnTriggerEnter(Collider other)
-    {
-        var groundItem = other.GetComponent<GroundItem>();
-        if (groundItem)
-        {
-            Item _item = new Item(groundItem.item);
-            if (inventory.AddItem(_item, 1))
-            {
-                Destroy(other.gameObject);
-            }
-        }
-    }
+    // public void OnTriggerEnter(Collider other)
+    // {
+    //     var groundItem = other.GetComponent<GroundItem>();
+    //     if (groundItem)
+    //     {
+    //         Item _item = new Item(groundItem.item);
+    //         if (inventory.AddItem(_item, 1))
+    //         {
+    //             Destroy(other.gameObject);
+    //         }
+    //     }
+    // }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))

@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
+// using UnityEditor;
 
-public class GroundItem : MonoBehaviour, ISerializationCallbackReceiver
-{
-    public ItemObject item;
-    public void OnBeforeSerialize()
-    {
-        GetComponentInChildren<SpriteRenderer>().sprite = item.uiDisplay;
-        EditorUtility.SetDirty(GetComponentInChildren<SpriteRenderer>());
-    }
-    public void OnAfterDeserialize()
-    {
+// public class GroundItem : MonoBehaviour, ISerializationCallbackReceiver
+// {
+//     // public ItemObject item;
+//     // public void OnBeforeSerialize()
+//     // {
+//     //     GetComponentInChildren<SpriteRenderer>().sprite = item.uiDisplay;
+//     //     EditorUtility.SetDirty(GetComponentInChildren<SpriteRenderer>());
+//     // }
+//     // public void OnAfterDeserialize()
+//     // {
 
-    }
-}
+//     // }
+// }
