@@ -64,4 +64,12 @@ public static class Serialization
     {
 
     }
+
+    public static void SaveAllChunks(Chunk[] chunks)
+    {
+        foreach (Chunk chunk in chunks)
+        {
+            SaveChunk(chunk);
+        }
+    }
 }
