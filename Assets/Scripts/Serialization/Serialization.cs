@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 public static class Serialization
 {
     public static string saveFolderName = "saves";
-    public static string worldName = "popo";
+    public static string worldName = "error";
     
     public static string SaveLocation(string worldName)
     {
