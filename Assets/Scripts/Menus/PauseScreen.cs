@@ -22,6 +22,6 @@ public class PauseScreen : MonoBehaviour
     public void ExitGame()
     {
         SaveGame();
-        sceneLoader.QuitGame();
+        SceneLoader.QuitGame();
     }
 }

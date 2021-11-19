@@ -8,11 +8,15 @@ public class SceneLoader : MonoBehaviour
     public GameObject mainMenu;
     public GameObject worldsMenu;
 
-    public void LoadGame()
+    public static void LoadGame()
     {
         SceneManager.LoadScene("World");
     }
-
+    public static void QuitGame()
+    {
+        Application.Quit();
+    }
+    // these functions should be moved to WorldSelect so SceneLoader can be static.
     public void WorldMenu()
     {
         worldsMenu.SetActive(true);
@@ -25,8 +29,4 @@ public class SceneLoader : MonoBehaviour
         worldsMenu.SetActive(false);
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 }
